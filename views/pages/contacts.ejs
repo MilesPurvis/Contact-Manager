@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <%- include('../shared/head') %>
+  </head>
+  <body>
+    <div class="container-fluid py-4">
+      <h1 class="display-2">MyContacts</h1>
+      <a href="/add" class="link-info">Add Contact</a>
+      <% if (typeof contacts !== "undefined") { %>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Contact Name</th>
+            <th scope="col">Contact Email</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% contacts.forEach(contact => { %>
+          <tr>
+            <td><%= contact.contactName %></td>
+            <td><%= contact.contactEmail %></td>
+            <td>
+              <a
+                type="button"
+                class="btn btn-outline-danger"
+                href="/edit/<%= contact._id %>"
+                >edit</a
+              >
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+      <% } %> <%- include('../shared/footer') %>
+    </div>
+    <%- include('../shared/scripts') %>
+  </body>
+</html>

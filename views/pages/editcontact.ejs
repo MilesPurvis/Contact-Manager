@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <%- include('../shared/head') %>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <h1 class="display-2">Edit Contact</h1>
+
+      <a href="/" class="link-info">View Contacts</a>
+      <!-- Errors -->
+      <% if (typeof errors !== "undefined") {errors.forEach(error =>{ %>
+      <div class="alert alert-dark alert-dismissible fade show" role="alert">
+        <strong>Holy guacamole!</strong> <%=error.msg%>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+      </div>
+      <% })} %>
+      <!-- Form -->
+
+      <form method="post" action="/edit/<%= contact._id%>">
+        <input type="hidden" name="id" value="<%= contact._id%>" />
+        <div class="mb-3">
+          <label for="name" class="form-label"></label>
+          <input
+            type="text"
+            class="form-control"
+            name="name"
+            value="<%= contact.contactName%>"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label"></label>
+          <input
+            type="text"
+            class="form-control"
+            name="email"
+            value="<%= contact.contactEmail%>"
+          />
+        </div>
+        <button type="submit" class="btn btn-outline-primary">Add</button>
+      </form>
+      <%- include('../shared/footer') %>
+    </div>
+    <%- include('../shared/scripts') %>
+  </body>
+</html>
